@@ -1,5 +1,6 @@
 import 'package:arcore_flutter_plugin/arcore_flutter_plugin.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:vector_math/vector_math_64.dart' as vector;
 
 class GraffitiProjektor extends StatefulWidget {
@@ -19,7 +20,7 @@ class _GraffitiProjektorState extends State<GraffitiProjektor> {
         ),
         body: ArCoreView(
           onArCoreViewCreated: _onArCoreViewCreated,
-          enableUpdateListener: true,
+          enableTapRecognizer: true,
         ),
       ),
     );
@@ -30,7 +31,8 @@ class _GraffitiProjektorState extends State<GraffitiProjektor> {
     //controller.onPlaneDetected = _onArPlaneDetected;
     controller.onPlaneTap = _onArPlaneDetected;
 
-    _addCube(arCoreController, vector.Vector3(0, 0, 0), vector.Vector4(0, 0, 0, 0), 0.1);
+    //_addCube(arCoreController, vector.Vector3(0, 0, 0), vector.Vector4(0, 0, 0, 0), 0.1);
+    _addImage(arCoreController, vector.Vector3(0, 0, 0), vector.Vector4(0, 0, 0, 0), 0.2);
   }
 
   void _onArPlaneDetected(List<ArCoreHitTestResult> plane) {
@@ -39,20 +41,22 @@ class _GraffitiProjektorState extends State<GraffitiProjektor> {
         content: Text("Plane"),
       )
     );
-    print("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF");
-    //_addCube(arCoreController, plane.centerPose.translation, plane.centerPose.rotation, 0.4);
   }
 
-  void _addCube(ArCoreController controller, vector.Vector3 position, vector.Vector4 rotation, double size) {
+  void _addImage(ArCoreController controller, vector.Vector3 position, vector.Vector4 rotation, double size) async {
+    final ByteData textureBytes = await rootBundle.load('assets/earth.jpg');
+
     final material = ArCoreMaterial(
-      color: Color.fromARGB(0, 255, 255, 244),
-    );
-    final cube = ArCoreCube(
+      reflectance: 0,
+      roughness: 0,
+      color: Color.fromARGB(255, 255, 255, 255),
+      textureBytes: textureBytes.buffer.asUint8List());
+    final plane = ArCoreCube(
       materials: [material],
       size: vector.Vector3(size, size, size),
     );
     final node = ArCoreNode(
-      shape: cube,
+      shape: plane,
       position: position,
       rotation: rotation,
     );
