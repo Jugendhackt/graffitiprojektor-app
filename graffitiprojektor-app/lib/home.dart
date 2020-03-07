@@ -1,11 +1,11 @@
 import 'package:graffitiprojektor_app/screens/augmented_faces.dart';
 import 'package:flutter/material.dart';
+import 'package:graffitiprojektor_app/screens/graffitiprojektor.dart';
 import 'screens/hello_world.dart';
 import 'screens/custom_object.dart';
 import 'screens/runtime_materials.dart';
 import 'screens/texture_and_rotation.dart';
 import 'screens/auto_detect_plane.dart';
-import 'screens/graffitiprojektor.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -21,49 +21,49 @@ class HomeScreen extends StatelessWidget {
               Navigator.of(context)
                   .push(MaterialPageRoute(builder: (context) => GraffitiProjektor()));
             },
-            title: Text("graffitiprojektor"),
+            title: Text("graffiti projector"),
           ),
           ListTile(
             onTap: () {
               Navigator.of(context)
                   .push(MaterialPageRoute(builder: (context) => HelloWorld()));
             },
-            title: Text("hello_world"),
+            title: Text("hello world"),
           ),
           ListTile(
             onTap: () {
               Navigator.of(context).push(
                   MaterialPageRoute(builder: (context) => CustomObject()));
             },
-            title: Text("custom_object"),
+            title: Text("custom object"),
           ),
           ListTile(
             onTap: () {
               Navigator.of(context).push(
                   MaterialPageRoute(builder: (context) => RuntimeMaterials()));
             },
-            title: Text("runtime_materials"),
+            title: Text("runtime materials"),
           ),
           ListTile(
             onTap: () {
               Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => ObjectWithTextureAndRotation()));
             },
-            title: Text("texture_and_rotation"),
+            title: Text("texture and rotation"),
           ),
           ListTile(
             onTap: () {
               Navigator.of(context).push(
                   MaterialPageRoute(builder: (context) => AutoDetectPlane()));
             },
-            title: Text("auto_detect_plane"),
+            title: Text("autodetect plane"),
           ),
           ListTile(
             onTap: () {
               Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => AugmentedFacesScreen()));
             },
-            title: Text("augmented_faces"),
+            title: Text("augmented faces"),
           ),
         ],
       ),

@@ -15,10 +15,11 @@ class _GraffitiProjektorState extends State<GraffitiProjektor> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Hello_World'),
+          title: const Text('Graffiti Projector'),
         ),
         body: ArCoreView(
           onArCoreViewCreated: _onArCoreViewCreated,
+          enableUpdateListener: true,
         ),
       ),
     );
@@ -26,55 +27,34 @@ class _GraffitiProjektorState extends State<GraffitiProjektor> {
 
   void _onArCoreViewCreated(ArCoreController controller) {
     arCoreController = controller;
+    //controller.onPlaneDetected = _onArPlaneDetected;
+    controller.onPlaneTap = _onArPlaneDetected;
 
-    _addSphere(arCoreController);
-    _addCylindre(arCoreController);
-    _addCube(arCoreController);
+    _addCube(arCoreController, vector.Vector3(0, 0, 0), vector.Vector4(0, 0, 0, 0), 0.1);
   }
 
-  Future _addSphere(ArCoreController controller) async {
-    final material = ArCoreMaterial(
-        color: Color.fromARGB(120, 66, 134, 244));
-    final sphere = ArCoreSphere(
-      materials: [material],
-      radius: 0.05,
+  void _onArPlaneDetected(List<ArCoreHitTestResult> plane) {
+    Scaffold.of(context).showSnackBar(
+      SnackBar(
+        content: Text("Plane"),
+      )
     );
-    final node = ArCoreNode(
-      shape: sphere,
-      position: vector.Vector3(0, 0, -1.5),
-    );
-    controller.addArCoreNode(node);
+    print("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF");
+    //_addCube(arCoreController, plane.centerPose.translation, plane.centerPose.rotation, 0.4);
   }
 
-  void _addCylindre(ArCoreController controller) {
+  void _addCube(ArCoreController controller, vector.Vector3 position, vector.Vector4 rotation, double size) {
     final material = ArCoreMaterial(
-      color: Colors.red,
-      reflectance: 1.0,
-    );
-    final cylindre = ArCoreCylinder(
-      materials: [material],
-      radius: 0.5,
-      height: 0.3,
-    );
-    final node = ArCoreNode(
-      shape: cylindre,
-      position: vector.Vector3(0.0, -0.5, -2.0),
-    );
-    controller.addArCoreNode(node);
-  }
-
-  void _addCube(ArCoreController controller) {
-    final material = ArCoreMaterial(
-      color: Color.fromARGB(120, 66, 134, 244),
-      metallic: 1.0,
+      color: Color.fromARGB(0, 255, 255, 244),
     );
     final cube = ArCoreCube(
       materials: [material],
-      size: vector.Vector3(0.5, 0.5, 0.5),
+      size: vector.Vector3(size, size, size),
     );
     final node = ArCoreNode(
       shape: cube,
-      position: vector.Vector3(-0.5, 0.5, -3.5),
+      position: position,
+      rotation: rotation,
     );
     controller.addArCoreNode(node);
   }
