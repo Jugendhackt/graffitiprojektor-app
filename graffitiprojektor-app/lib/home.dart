@@ -1,11 +1,5 @@
-import 'package:graffitiprojektor_app/screens/augmented_faces.dart';
 import 'package:flutter/material.dart';
 import 'package:graffitiprojektor_app/screens/graffitiprojektor.dart';
-import 'screens/hello_world.dart';
-import 'screens/custom_object.dart';
-import 'screens/runtime_materials.dart';
-import 'screens/texture_and_rotation.dart';
-import 'screens/auto_detect_plane.dart';
 //import 'package:http/http.dart' as http;
 
 class HomeScreen extends StatelessWidget {
@@ -14,180 +8,68 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text('DeepGraffiti'),
-      ),
       key: _formKey,
       body: Container(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Image(
-                image: AssetImage('assets/logo.png'),
-              ),
-              TextFormField(
-                decoration: const InputDecoration(
-                  hintText: 'Enter text',
+        margin: EdgeInsets.symmetric(horizontal: 20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 30.0),
+            ),
+            Image(
+              image: AssetImage('assets/logo.png'),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 30.0),
+            ),
+            TextFormField(
+              decoration: const InputDecoration(
+                hintText: 'Enter text',
+                contentPadding: const EdgeInsets.symmetric(horizontal: 15.0),
+                border: const OutlineInputBorder(
+                  borderSide: const BorderSide(
+                    color: Colors.grey,
+                  ),
                 ),
-                autofocus: true,
-                autovalidate: true,
-                validator: (value) {
-                  if (value.isEmpty) {
-                    return 'Please enter a text!';
-                  }
-                  return null;
-                },
+                labelText: 'Graffiti',
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16.0),
-                child: RaisedButton(
-                  onPressed: () {
-                    if (_formKey.currentState.validate()) {
-                      //fetchImage(_formKey.currentState.toString());
-                    }
-                  },
-                  child: Text('Submit'),
-                ),
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  ButtonTheme(
-                    minWidth: 500.0,
-                    buttonColor: Color.fromARGB(255, 220, 220, 220),
+              autofocus: true,
+              autovalidate: true,
+              validator: (value) {
+                if (value.isEmpty) {
+                  return 'Please enter an arbitrary text!';
+                }
+                return null;
+              },
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 10.0),
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Center(
+                  child: ButtonTheme(
+                    minWidth: MediaQuery.of(context).size.width,
+                    buttonColor: Color.fromARGB(255, 20, 150, 20),
+                    highlightColor: Color.fromARGB(255, 100, 200, 100),
                     child: RaisedButton(
+                      textColor: Colors.white,
                       child: Text("graffiti projector"),
                       onPressed: () {
-                        Navigator.of(context)
-                            .push(MaterialPageRoute(builder: (context) => GraffitiProjektor()));
+                        //fetchImage(_formKey.currentState.toString());
+                        //Navigator.of(context)
+                        //    .push(MaterialPageRoute(builder: (context) => GraffitiProjektor()));
                       },
                     ),
                   ),
-                  ButtonTheme(
-                    minWidth: 500.0,
-                    buttonColor: Color.fromARGB(255, 220, 220, 220),
-                    child: RaisedButton(
-                      child: Text("hello world"),
-                      onPressed: () {
-                        Navigator.of(context)
-                            .push(MaterialPageRoute(builder: (context) => HelloWorld()));
-                      },
-                    ),
-                  ),
-                  ButtonTheme(
-                    minWidth: 500.0,
-                    buttonColor: Color.fromARGB(255, 220, 220, 220),
-                    child: RaisedButton(
-                      child: Text("custom object"),
-                      onPressed: () {
-                        Navigator.of(context)
-                            .push(MaterialPageRoute(builder: (context) => CustomObject()));
-                      },
-                    ),
-                  ),
-                  ButtonTheme(
-                    minWidth: 500.0,
-                    buttonColor: Color.fromARGB(255, 220, 220, 220),
-                    child: RaisedButton(
-                      child: Text("runtime materials"),
-                      onPressed: () {
-                        Navigator.of(context)
-                            .push(MaterialPageRoute(builder: (context) => RuntimeMaterials()));
-                      },
-                    ),
-                  ),
-                  ButtonTheme(
-                    minWidth: 500.0,
-                    buttonColor: Color.fromARGB(255, 220, 220, 220),
-                    child: RaisedButton(
-                      child: Text("texture and rotation"),
-                      onPressed: () {
-                        Navigator.of(context)
-                            .push(MaterialPageRoute(builder: (context) => ObjectWithTextureAndRotation()));
-                      },
-                    ),
-                  ),
-                  ButtonTheme(
-                    minWidth: 500.0,
-                    buttonColor: Color.fromARGB(255, 220, 220, 220),
-                    child: RaisedButton(
-                      child: Text("autodetect plane"),
-                      onPressed: () {
-                        Navigator.of(context)
-                            .push(MaterialPageRoute(builder: (context) => AutoDetectPlane()));
-                      },
-                    ),
-                  ),
-                  ButtonTheme(
-                    minWidth: 500.0,
-                    buttonColor: Color.fromARGB(255, 220, 220, 220),
-                    child: RaisedButton(
-                      child: Text("augmented face"),
-                      onPressed: () {
-                        Navigator.of(context)
-                            .push(MaterialPageRoute(builder: (context) => AugmentedFacesScreen()));
-                      },
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
+                ),
+              ],
+            ),
+          ],
         ),
-      /*body: ListView(
-        children: <Widget>[
-          ListTile(
-            onTap: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => GraffitiProjektor()));
-            },
-            title: Text("graffiti projector"),
-          ),
-          ListTile(
-            onTap: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => HelloWorld()));
-            },
-            title: Text("hello world"),
-          ),
-          ListTile(
-            onTap: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => CustomObject()));
-            },
-            title: Text("custom object"),
-          ),
-          ListTile(
-            onTap: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => RuntimeMaterials()));
-            },
-            title: Text("runtime materials"),
-          ),
-          ListTile(
-            onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => ObjectWithTextureAndRotation()));
-            },
-            title: Text("texture and rotation"),
-          ),
-          ListTile(
-            onTap: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => AutoDetectPlane()));
-            },
-            title: Text("autodetect plane"),
-          ),
-          ListTile(
-            onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => AugmentedFacesScreen()));
-            },
-            title: Text("augmented faces"),
-          ),
-        ],
-      ),*/
+      ),
     );
 
     /*Future<http.Response> fetchImage(String text) {
