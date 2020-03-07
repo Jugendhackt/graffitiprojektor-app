@@ -6,11 +6,11 @@ import 'screens/custom_object.dart';
 import 'screens/runtime_materials.dart';
 import 'screens/texture_and_rotation.dart';
 import 'screens/auto_detect_plane.dart';
+//import 'package:http/http.dart' as http;
 
 class HomeScreen extends StatelessWidget {
 
   final _formKey = GlobalKey<FormState>();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,7 +44,7 @@ class HomeScreen extends StatelessWidget {
                 child: RaisedButton(
                   onPressed: () {
                     if (_formKey.currentState.validate()) {
-                      
+                      //fetchImage(_formKey.currentState.toString());
                     }
                   },
                   child: Text('Submit'),
@@ -189,5 +189,9 @@ class HomeScreen extends StatelessWidget {
         ],
       ),*/
     );
+
+    /*Future<http.Response> fetchImage(String text) {
+      return http.get('/text?message=' + text);
+    }*/
   }
 }
