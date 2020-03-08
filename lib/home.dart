@@ -4,19 +4,29 @@ import 'package:flutter/services.dart';
 import 'settings.dart';
 import 'globals.dart' as globals;
 
-class HomeScreen extends StatelessWidget {
-  final _textInput = TextEditingController();
-  static const platform = const MethodChannel('samples.flutter/graffitiprojektor');
+/*class HomeScreenState extends State<HomeScreen> {
+  static const platform = const MethodChannel(
+      'samples.flutter/graffitiprojektor');
+  int _works;
 
-  Future<void> _callCamera(String text, Image image) {
+  Future<void> _callCamera(String text, Image image) async {
     print(text);
+    int works = 0;
     try {
-      platform.invokeMethod('getARCamera', text);
+      works = await platform.invokeMethod('getARCamera', text);
     } on PlatformException catch (e) {
+      print(e);
       print("Failed to load camera.");
     }
-    return null;
+
+    setState(() {
+      _works = works;
+    });
   }
+}*/
+
+class HomeScreen extends StatelessWidget {
+  final _textInput = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -73,8 +83,8 @@ class HomeScreen extends StatelessWidget {
                       child: Text("Let's go!"),
                       onPressed: () {
                         if (_textInput.text.isNotEmpty) {
-                          Image image = Image.network(globals.serverAddress /*'/text?message=' + text*/);
-                          _callCamera(_textInput.text, image);
+                          Image image = Image.network(globals.serverAddress + '/text?message=' + _textInput.text);
+                          //_callCamera(_textInput.text, image);
                         }
                       },
                     ),

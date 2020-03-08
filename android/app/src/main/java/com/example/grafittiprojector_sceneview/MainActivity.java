@@ -3,6 +3,7 @@ package com.example.grafittiprojector_sceneview;
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity;
 import io.flutter.embedding.engine.FlutterEngine;
+import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugins.GeneratedPluginRegistrant;
 import android.content.ContextWrapper;
 import android.content.Intent;
@@ -23,7 +24,8 @@ public class MainActivity extends FlutterActivity {
                     (call, result) -> {
                       // Note: this method is invoked on the main thread.
                         if (call.method.equals("getARCamera")) {
-                            result.success();
+                            getARCamera("");
+                            result.success(0);
                         } else {
                             result.notImplemented();
                         }

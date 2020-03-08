@@ -6,7 +6,6 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //_textInput.text = globals.serverAddress;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -58,5 +57,6 @@ class SettingsScreen extends StatelessWidget {
         ),
       ),
     );
+    _textInput.text = globals.serverAddress;
   }
 }

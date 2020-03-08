@@ -1,1 +1,1 @@
-String serverAddress = "https://github.com/Jugendhackt/graffitiprojektor-app/blob/master/logo.png";
+String serverAddress = "http://deepgraffiti.tk";
