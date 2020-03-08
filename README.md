@@ -1,5 +1,6 @@
-# Graffitiprojektor - App
+# Deepgraffiti
 ![logo](logo.png)
 An app which aims to project a generated graffiti on a plane via AR.
-## Dependencies
-- Using [arcore_flutter_plugin](https://github.com/giandifra/arcore_flutter_plugin)
+## See also
+- [KI for this App](https://github.com/Jugendhackt/graffityprojekt_KI)
+- [Graffiti generator](https://github.com/Jugendhackt/graffitigenerator)
