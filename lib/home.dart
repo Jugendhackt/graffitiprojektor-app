@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
-//import 'package:http/http.dart' as http;
 
 class HomeScreen extends StatelessWidget {
   final _textInput = TextEditingController();
+
+  void _callCamera(String text, Image image) {
+    print(text);
+    // TODO: create another flutter screen and embed camera or create screen in java?
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,8 +61,8 @@ class HomeScreen extends StatelessWidget {
                       textColor: Colors.white,
                       child: Text("Let's go!"),
                       onPressed: () {
-                        print(_textInput.text);
-                        //fetchImage(_formKey.currentState.toString());
+                        Image image = Image.network("https://github.com/Jugendhackt/graffitiprojektor-app/blob/master/logo.png"/*'/text?message=' + text*/);
+                        _callCamera(_textInput.text, image);
                       },
                     ),
                   ),
@@ -69,9 +73,5 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
     );
-
-    /*Future<http.Response> fetchImage(String text) {
-      return http.get('/text?message=' + text);
-    }*/
   }
 }
