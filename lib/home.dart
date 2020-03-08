@@ -1,18 +1,27 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'settings.dart';
 import 'globals.dart' as globals;
 
 class HomeScreen extends StatelessWidget {
   final _textInput = TextEditingController();
+  static const platform = const MethodChannel('samples.flutter/graffitiprojektor');
 
-  void _callCamera(String text, Image image) {
+  Future<void> _callCamera(String text, Image image) {
     print(text);
-    // TODO: create another flutter screen and embed camera or create screen in java?
+    try {
+      platform.invokeMethod('getARCamera', text);
+    } on PlatformException catch (e) {
+      print("Failed to load camera.");
+    }
+    return null;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //backgroundColor: const Color(0xFF18141F),
       body: Container(
         margin: EdgeInsets.symmetric(horizontal: 20),
         child: Column(
@@ -57,7 +66,7 @@ class HomeScreen extends StatelessWidget {
                 Center(
                   child: ButtonTheme(
                     minWidth: MediaQuery.of(context).size.width,
-                    buttonColor: const Color(0xFF18141F),
+                    buttonColor: Color.fromARGB(255, 170, 170, 200),
                     highlightColor: Color.fromARGB(255, 200, 200, 255),
                     child: RaisedButton(
                       textColor: Colors.white,
