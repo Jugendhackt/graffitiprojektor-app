@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'settings.dart';
+import 'globals.dart' as globals;
 
 class HomeScreen extends StatelessWidget {
   final _textInput = TextEditingController();
@@ -55,19 +57,34 @@ class HomeScreen extends StatelessWidget {
                 Center(
                   child: ButtonTheme(
                     minWidth: MediaQuery.of(context).size.width,
-                    buttonColor: Color.fromARGB(255, 20, 150, 20),
-                    highlightColor: Color.fromARGB(255, 100, 200, 100),
+                    buttonColor: const Color(0xFF18141F),
+                    highlightColor: Color.fromARGB(255, 200, 200, 255),
                     child: RaisedButton(
                       textColor: Colors.white,
                       child: Text("Let's go!"),
                       onPressed: () {
-                        Image image = Image.network("https://github.com/Jugendhackt/graffitiprojektor-app/blob/master/logo.png"/*'/text?message=' + text*/);
-                        _callCamera(_textInput.text, image);
+                        if (_textInput.text.isNotEmpty) {
+                          Image image = Image.network(globals.serverAddress /*'/text?message=' + text*/);
+                          _callCamera(_textInput.text, image);
+                        }
                       },
                     ),
                   ),
                 ),
               ],
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 140.0),
+            ),
+            Align(
+              alignment: Alignment.bottomRight,
+              child: IconButton(
+                icon: Icon(Icons.settings),
+                onPressed: () {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (context) => SettingsScreen()));
+                },
+              ),
             ),
           ],
         ),
