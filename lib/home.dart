@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:graffitiprojektor_app/screens/graffitiprojektor.dart';
 //import 'package:http/http.dart' as http;
 
 class HomeScreen extends StatelessWidget {
+  final _textInput = TextEditingController();
 
-  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: _formKey,
       body: Container(
         margin: EdgeInsets.symmetric(horizontal: 20),
         child: Column(
@@ -24,6 +22,7 @@ class HomeScreen extends StatelessWidget {
               padding: EdgeInsets.symmetric(vertical: 30.0),
             ),
             TextFormField(
+              controller: _textInput,
               decoration: const InputDecoration(
                 hintText: 'Enter text',
                 contentPadding: const EdgeInsets.symmetric(horizontal: 15.0),
@@ -56,11 +55,10 @@ class HomeScreen extends StatelessWidget {
                     highlightColor: Color.fromARGB(255, 100, 200, 100),
                     child: RaisedButton(
                       textColor: Colors.white,
-                      child: Text("graffiti projector"),
+                      child: Text("Let's go!"),
                       onPressed: () {
+                        print(_textInput.text);
                         //fetchImage(_formKey.currentState.toString());
-                        //Navigator.of(context)
-                        //    .push(MaterialPageRoute(builder: (context) => GraffitiProjektor()));
                       },
                     ),
                   ),
